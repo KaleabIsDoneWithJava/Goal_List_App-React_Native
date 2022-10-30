@@ -1,29 +1,28 @@
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 //import EStyleSheet from "react-native-extended-stylesheet";
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <View style={styles.appContainer}>
       <View>
-        <Text style={styles.dummyText}>fIRST lINE oF tEXT!</Text>
+        <TextInput style={styles.input} placeholder="Your Course Goal!" />
+        <Button title="Add Goal" />
       </View>
-      <Text style={styles.dummyText}>Hello World!</Text>
-      <Button title="Tap Me Daddy" />
+      <View>
+        <Text>List Of Goals...</Text>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+  appContainer: {
+    padding: 50,
   },
-  dummyText: { 
-    margin: 1, 
-    padding: 16, 
-    borderColor:"blue", 
-    borderWidth: 2 
+  input: {
+    borderWidth: 1,
+    borderColor: "darkblue",
+    margin: 15,
+    padding: 5,
   },
 });
