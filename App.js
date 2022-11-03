@@ -8,7 +8,7 @@ export default function App() {
         <TextInput style={styles.input} placeholder="Your Course Goal!" />
         <Button title="Add Goal" />
       </View>
-      <View>
+      <View style={styles.goalsContainer}>
         <Text>List Of Goals...</Text>
       </View>
     </View>
@@ -17,23 +17,31 @@ export default function App() {
 
 const styles = StyleSheet.create({
   appContainer: {
+    flex: 1,
     paddingTop: 50,
-    paddingRight: 20,
-    paddingLeft: 20,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: "darkblue",
-    padding: 5,
-    marginRight: 10,
-    width: "70%"
-    
-
+    paddingHorizontal: 20,
   },
 
   inputContainer: {
+    flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 10,
+    alignItems: "center",
+    paddingBottom: 24,
+    borderBottomWidth: 2,
+    borderColor: "#cccccc",
+  },
+
+  goalsContainer: {
+    flex: 6,
+    paddingTop: 24,
+  },
+
+  input: {
+    borderWidth: 1,
+    borderColor: "#cccccc",
+    padding: 5,
+    marginRight: 10,
+    width: "70%",
   },
 });
