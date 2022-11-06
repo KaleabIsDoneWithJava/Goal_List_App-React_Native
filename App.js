@@ -37,6 +37,8 @@ export default function App() {
         <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
+        {/*Flatlist is like ScrollView but with Lazy Loading. It has most props that Scrollview 
+        has and is better for performance when used with dynamic lists, especially when they're long*/}
         <FlatList 
         data={courseGoals}
         renderItem={(ItemData) =>{
