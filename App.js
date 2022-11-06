@@ -1,20 +1,28 @@
 import { useState } from "react";
-import { Button, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Button,
+  FlatList,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 //import EStyleSheet from "react-native-extended-stylesheet";
 
 export default function App() {
   const [enteredGoalText, setEnteredGoalText] = useState("");
   const [courseGoals, setCourseGoals] = useState([]);
-
   function goalInputHandler(enteredText) {
     setEnteredGoalText(enteredText);
     //console.log(enteredText);
   }
   function addGoalHandler() {
     //console.log(enteredGoalText);
+    
     setCourseGoals((currentCourseGoals) => [
       ...currentCourseGoals,
-      enteredGoalText,
+      {text: enteredGoalText, id: Math.random().toString() },
     ]);
   }
 
@@ -29,15 +37,20 @@ export default function App() {
         <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-      <ScrollView alwaysBounceVertical={false}>
+        <FlatList 
+        data={courseGoals}
+        renderItem={(ItemData) =>{
+          return(
+            <View style={styles.goalsItem}>
+              <Text style={styles.goalsText}>{ItemData.item.text}</Text>
+            </View>
+          )
+        }}
+        //To get the key prop from another prop in the object passed to the data prop
+        keyExtractor={(items, index) => {return items.id}}
+        alwaysBounceVertical={false}         
+        />
 
-        {courseGoals.map((goal) => (
-          
-          <View key={goal} style={styles.goalsItem}>
-            <Text style={styles.goalsText} >{goal}</Text>
-          </View>
-        ))}
-        </ScrollView>
       </View>
     </View>
   );
