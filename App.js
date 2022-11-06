@@ -1,14 +1,7 @@
 import { useState } from "react";
-import {
-  Button,
-  FlatList,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
-//import EStyleSheet from "react-native-extended-stylesheet";
+import { Button, FlatList, StyleSheet, TextInput, View } from "react-native";
+
+import GoalItem from "./components/GoalItem";
 
 export default function App() {
   const [enteredGoalText, setEnteredGoalText] = useState("");
@@ -19,10 +12,10 @@ export default function App() {
   }
   function addGoalHandler() {
     //console.log(enteredGoalText);
-    
+
     setCourseGoals((currentCourseGoals) => [
       ...currentCourseGoals,
-      {text: enteredGoalText, id: Math.random().toString() },
+      { text: enteredGoalText, id: Math.random().toString() },
     ]);
   }
 
@@ -39,20 +32,18 @@ export default function App() {
       <View style={styles.goalsContainer}>
         {/*Flatlist is like ScrollView but with Lazy Loading. It has most props that Scrollview 
         has and is better for performance when used with dynamic lists, especially when they're long*/}
-        <FlatList 
-        data={courseGoals}
-        renderItem={(ItemData) =>{
-          return(
-            <View style={styles.goalsItem}>
-              <Text style={styles.goalsText}>{ItemData.item.text}</Text>
-            </View>
-          )
-        }}
-        //To get the key prop from another prop in the object passed to the data prop
-        keyExtractor={(items, index) => {return items.id}}
-        alwaysBounceVertical={false}         
+        <FlatList
+          data={courseGoals}
+          renderItem={(ItemData) => {
+            //need to pass a prop into GoalItem to render data from the dynamic list.
+            return <GoalItem />;
+          }}
+          //To get the key prop from another prop in the object passed to the data prop
+          keyExtractor={(items, index) => {
+            return items.id;
+          }}
+          alwaysBounceVertical={false}
         />
-
       </View>
     </View>
   );
@@ -78,17 +69,6 @@ const styles = StyleSheet.create({
   goalsContainer: {
     flex: 6,
     paddingTop: 24,
-  },
-
-  goalsItem: {
-    margin: 8,
-    padding: 8,
-    borderRadius: 6,
-    backgroundColor: "#5e0acc",
-  },
-
-  goalsText: {
-    color: "white",
   },
 
   input: {
