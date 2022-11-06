@@ -36,7 +36,7 @@ export default function App() {
           data={courseGoals}
           renderItem={(ItemData) => {
             //need to pass a prop into GoalItem to render data from the dynamic list.
-            return <GoalItem />;
+            return <GoalItem text={ItemData.item.text} />;
           }}
           //To get the key prop from another prop in the object passed to the data prop
           keyExtractor={(items, index) => {
