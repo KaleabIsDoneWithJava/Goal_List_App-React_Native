@@ -15,8 +15,14 @@ export default function App() {
       { text: enteredGoalText, id: Math.random().toString() },
     ]);
   }
-  function deleteItemHandler(){
-    console.log("delete"); //temporary
+
+  function deleteItemHandler(id) {
+    //console.log("delete");
+    setCourseGoals((currentCourseGoals) => {
+      return currentCourseGoals.filter((goal) => {
+        goal.id !== id;
+      });
+    });
   }
 
   return (
@@ -29,9 +35,16 @@ export default function App() {
 
         <FlatList
           data={courseGoals}
-          renderItem={(ItemData) => {
+          renderItem={(itemData) => {
+            //console.log(itemData.item.id)
             //need to pass a prop into GoalItem to render data from the dynamic list.
-            return <GoalItem text={ItemData.item.text} onDeleteItem={deleteItemHandler}/>;
+            return (
+              <GoalItem
+                text={itemData.item.text}
+                id={itemData.item.id}
+                onDeleteItem={deleteItemHandler}
+              />
+            );
           }}
           //To get the key prop from another prop in the object passed to the data prop
           keyExtractor={(items, index) => {

@@ -8,10 +8,10 @@ function GoalInput(props) {
     setEnteredGoalText(enteredText);
     //console.log(enteredText);
   }
-  function addGoalHandler() {
-    props.onAddGoal(enteredGoalText);
-    setEnteredGoalText("");
-  }
+    function addGoalHandlerTemp() {
+      props.onAddGoal(enteredGoalText);
+      setEnteredGoalText("");
+    }
   return (
     <View style={styles.inputContainer}>
       <TextInput
@@ -20,7 +20,10 @@ function GoalInput(props) {
         onChangeText={goalInputHandler}
         value={enteredGoalText}
       />
-      <Button title="Add Goal" onPress={addGoalHandler} />
+      <Button
+        title="Add Goal"
+        onPress={addGoalHandlerTemp}
+      />
     </View>
   );
 }
