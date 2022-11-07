@@ -19,9 +19,7 @@ export default function App() {
   function deleteItemHandler(id) {
     //console.log("delete");
     setCourseGoals((currentCourseGoals) => {
-      return currentCourseGoals.filter((goal) => {
-        goal.id !== id;
-      });
+      return currentCourseGoals.filter((goal) => goal.id !== id);
     });
   }
 
