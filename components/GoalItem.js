@@ -6,11 +6,17 @@ function GoalItem(props) {
 
   // }
   return (
-    <Pressable android_ripple={{color:"#dddddd"}} onPress={props.onDeleteItem.bind(this, props.id)}>
-      <View style={styles.goalsItem}>
+    <View style={styles.goalsItem}>
+      <Pressable
+        android_ripple={{
+          color: "#dddddd",
+        }}
+        onPress={props.onDeleteItem.bind(this, props.id)}
+        style={({ pressed }) => pressed && styles.pressedItem}
+      >
         <Text style={styles.goalsText}>{props.text}</Text>
-      </View>
-    </Pressable>
+      </Pressable>
+    </View>
   );
 }
 
@@ -21,12 +27,15 @@ export default GoalItem;
 const styles = StyleSheet.create({
   goalsItem: {
     margin: 8,
-    padding: 8,
     borderRadius: 6,
     backgroundColor: "#5e0acc",
   },
 
   goalsText: {
     color: "white",
+    padding: 8,
+  },
+  pressedItem: {
+    opacity: 0.5,
   },
 });
