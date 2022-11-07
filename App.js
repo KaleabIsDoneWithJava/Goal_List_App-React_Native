@@ -15,6 +15,9 @@ export default function App() {
       { text: enteredGoalText, id: Math.random().toString() },
     ]);
   }
+  function deleteItemHandler(){
+    console.log("delete"); //temporary
+  }
 
   return (
     <View style={styles.appContainer}>
@@ -28,7 +31,7 @@ export default function App() {
           data={courseGoals}
           renderItem={(ItemData) => {
             //need to pass a prop into GoalItem to render data from the dynamic list.
-            return <GoalItem text={ItemData.item.text} />;
+            return <GoalItem text={ItemData.item.text} onDeleteItem={deleteItemHandler}/>;
           }}
           //To get the key prop from another prop in the object passed to the data prop
           keyExtractor={(items, index) => {
