@@ -1,16 +1,13 @@
 import { useState } from "react";
-import { Button, FlatList, StyleSheet, TextInput, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
+import GoalInput from "./components/GoalInput";
 
 import GoalItem from "./components/GoalItem";
 
 export default function App() {
-  const [enteredGoalText, setEnteredGoalText] = useState("");
   const [courseGoals, setCourseGoals] = useState([]);
-  function goalInputHandler(enteredText) {
-    setEnteredGoalText(enteredText);
-    //console.log(enteredText);
-  }
-  function addGoalHandler() {
+
+  function addGoalHandler(enteredGoalText) {
     //console.log(enteredGoalText);
 
     setCourseGoals((currentCourseGoals) => [
@@ -21,17 +18,12 @@ export default function App() {
 
   return (
     <View style={styles.appContainer}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Your Course Goal!"
-          onChangeText={goalInputHandler}
-        />
-        <Button title="Add Goal" onPress={addGoalHandler} />
-      </View>
+      <GoalInput onAddGoal={addGoalHandler} />
+
       <View style={styles.goalsContainer}>
         {/*Flatlist is like ScrollView but with Lazy Loading. It has most props that Scrollview 
         has and is better for performance when used with dynamic lists, especially when they're long*/}
+
         <FlatList
           data={courseGoals}
           renderItem={(ItemData) => {
@@ -56,26 +48,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
 
-  inputContainer: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingBottom: 24,
-    borderBottomWidth: 2,
-    borderColor: "#cccccc",
-  },
-
   goalsContainer: {
     flex: 6,
     paddingTop: 24,
-  },
-
-  input: {
-    borderWidth: 1,
-    borderColor: "#cccccc",
-    padding: 5,
-    marginRight: 10,
-    width: "70%",
   },
 });
