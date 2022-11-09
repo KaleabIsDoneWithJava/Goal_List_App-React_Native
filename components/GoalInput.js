@@ -8,10 +8,11 @@ function GoalInput(props) {
     setEnteredGoalText(enteredText);
     //console.log(enteredText);
   }
-  function addGoalHandlerTemp() {
+  function addGoalHandler() {
     props.onAddGoal(enteredGoalText);
     setEnteredGoalText("");
   }
+
   return (
     <Modal visible={props.visible} animationType="fade">
       <View style={styles.inputContainer}>
@@ -23,10 +24,10 @@ function GoalInput(props) {
         />
         <View style={styles.buttonContainer}>
           <View style={styles.button}>
-            <Button title="Add Goal" onPress={addGoalHandlerTemp} />
+            <Button title="Add Goal" onPress={addGoalHandler} />
           </View>
           <View style={styles.button}>
-            <Button title="Cancel" />
+            <Button title="Cancel" onPress={props.onCancel} />
           </View>
         </View>
       </View>

@@ -11,6 +11,11 @@ export default function App() {
   function startAddGoalHandler() {
     setModalIsVisible(true);
   }
+
+  function endAddGoalHandler() {
+    setModalIsVisible(false);
+  }
+
   function addGoalHandler(enteredGoalText) {
     //console.log(enteredGoalText);
 
@@ -18,6 +23,8 @@ export default function App() {
       ...currentCourseGoals,
       { text: enteredGoalText, id: Math.random().toString() },
     ]);
+    //Closes the modal after adding to show the added goals list
+    endAddGoalHandler();
   }
 
   function deleteItemHandler(id) {
@@ -34,8 +41,7 @@ export default function App() {
         color="#5e0acc"
         onPress={startAddGoalHandler}
       />
-      <GoalInput visible={modalIsVisible} onAddGoal={addGoalHandler} />
-      
+      <GoalInput visible={modalIsVisible} onAddGoal={addGoalHandler} onCancel={endAddGoalHandler} />
 
       <View style={styles.goalsContainer}>
         {/*Flatlist is like ScrollView but with Lazy Loading. It has most props that Scrollview 
