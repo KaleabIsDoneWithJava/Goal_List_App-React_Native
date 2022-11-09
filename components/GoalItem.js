@@ -22,10 +22,13 @@ function GoalItem(props) {
 
 export default GoalItem;
 
-//Could've imported the styles from App.js, but keeping your components and their respective
-//styles together in one file is considered good practice for react-native
+/*Could've imported the styles from App.js, but keeping your components and their respective
+styles together in one file is considered good practice for react-native.
+Unlike CSS, in react-native styling, the styles don't cascade.*/
+
 const styles = StyleSheet.create({
   goalsItem: {
+    //borderRadius has no effect on <Text> elements on IOS
     margin: 8,
     borderRadius: 6,
     backgroundColor: "#5e0acc",
