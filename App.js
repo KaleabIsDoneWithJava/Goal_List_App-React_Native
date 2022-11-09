@@ -14,6 +14,7 @@ export default function App() {
 
   function endAddGoalHandler() {
     setModalIsVisible(false);
+
   }
 
   function addGoalHandler(enteredGoalText) {
