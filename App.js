@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, FlatList, StyleSheet, View } from "react-native";
+import { Button, FlatList, StyleSheet, View, StatusBar } from "react-native";
 import GoalInput from "./components/GoalInput";
 
 import GoalItem from "./components/GoalItem";
@@ -14,7 +14,6 @@ export default function App() {
 
   function endAddGoalHandler() {
     setModalIsVisible(false);
-
   }
 
   function addGoalHandler(enteredGoalText) {
@@ -36,39 +35,48 @@ export default function App() {
   }
 
   return (
-    <View style={styles.appContainer}>
-      <Button
-        title="Add New Goal"
-        color="#5e0acc"
-        onPress={startAddGoalHandler}
-      />
-      <GoalInput visible={modalIsVisible} onAddGoal={addGoalHandler} onCancel={endAddGoalHandler} />
+    //backgroundColor works only on android
+    <>
+      <StatusBar style="auto" backgroundColor="#605f63"  />
+      <View style={styles.appContainer}>
+        <Button
+          title="Add New Goal"
+          color="#5e0acc"
+          onPress={startAddGoalHandler}
+        />
 
-      <View style={styles.goalsContainer}>
-        {/*Flatlist is like ScrollView but with Lazy Loading. It has most props that Scrollview 
+        <GoalInput
+          visible={modalIsVisible}
+          onAddGoal={addGoalHandler}
+          onCancel={endAddGoalHandler}
+        />
+
+        <View style={styles.goalsContainer}>
+          {/*Flatlist is like ScrollView but with Lazy Loading. It has most props that Scrollview 
         has and is better for performance when used with dynamic lists, especially when they're long*/}
 
-        <FlatList
-          data={courseGoals}
-          renderItem={(itemData) => {
-            //console.log(itemData.item.id)
-            //need to pass a prop into GoalItem to render data from the dynamic list.
-            return (
-              <GoalItem
-                text={itemData.item.text}
-                id={itemData.item.id}
-                onDeleteItem={deleteItemHandler}
-              />
-            );
-          }}
-          //To get the key prop from another prop in the object passed to the data prop
-          keyExtractor={(items, index) => {
-            return items.id;
-          }}
-          alwaysBounceVertical={false}
-        />
+          <FlatList
+            data={courseGoals}
+            renderItem={(itemData) => {
+              //console.log(itemData.item.id)
+              //need to pass a prop into GoalItem to render data from the dynamic list.
+              return (
+                <GoalItem
+                  text={itemData.item.text}
+                  id={itemData.item.id}
+                  onDeleteItem={deleteItemHandler}
+                />
+              );
+            }}
+            //To get the key prop from another prop in the object passed to the data prop
+            keyExtractor={(items, index) => {
+              return items.id;
+            }}
+            alwaysBounceVertical={false}
+          />
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
