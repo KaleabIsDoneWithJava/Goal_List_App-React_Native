@@ -6,7 +6,6 @@ import {
   Button,
   Modal,
   Image,
-  StatusBar,
 } from "react-native";
 
 function GoalInput(props) {

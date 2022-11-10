@@ -37,7 +37,7 @@ export default function App() {
   return (
     //backgroundColor works only on android
     <>
-      <StatusBar style="auto" backgroundColor="#605f63"  />
+      <StatusBar style="auto" />
       <View style={styles.appContainer}>
         <Button
           title="Add New Goal"
@@ -52,8 +52,10 @@ export default function App() {
         />
 
         <View style={styles.goalsContainer}>
-          {/*Flatlist is like ScrollView but with Lazy Loading. It has most props that Scrollview 
-        has and is better for performance when used with dynamic lists, especially when they're long*/}
+          {/*
+          Flatlist is like ScrollView but with Lazy Loading. It has most props that Scrollview 
+          has and is better for performance when used with dynamic lists, especially when they're long
+          */}
 
           <FlatList
             data={courseGoals}
